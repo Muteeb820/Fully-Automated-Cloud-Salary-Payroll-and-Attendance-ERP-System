@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root { 
+      --primary: #0f172a; --secondary: #334155; --accent: #2563eb; 
+      --success: #10b981; --danger: #ef4444; --warning: #f59e0b;
+      --bg: #f4f7fe; --card-bg: #ffffff;
+    }
+    body { background-color: var(--bg); font-family: 'Poppins', sans-serif; color: var(--secondary); padding: 15px; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    
+    .top-navbar { background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%); border-radius: 20px; padding: 20px 30px; margin-bottom: 25px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+    .brand-title { color: white; margin: 0; font-weight: 800; font-size: 24px; letter-spacing: 0.5px; }
+    .brand-subtitle { color: #94a3b8; margin: 0; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+    .btn-calc-rules { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; border: none; border-radius: 50px; padding: 10px 24px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); transition: all 0.3s ease; }
+    
+    .info-card { background: var(--card-bg); border-radius: 24px; padding: 25px; height: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid rgba(226, 232, 240, 0.8); }
+    .card-heading { font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .form-label { font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; margin-bottom: 6px; }
+    .custom-input { border-radius: 12px; border: 2px solid #e2e8f0; padding: 10px 15px; font-weight: 600; font-size: 14px; color: var(--primary); background: #f8fafc; transition: all 0.3s; }
+    .custom-input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); background: white; outline: none; }
+    
+    .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #e2e8f0; }
+    .stat-label { font-weight: 500; color: #64748b; font-size: 13px; }
+    .stat-value { font-weight: 700; font-size: 14px; color: var(--primary); }
+    
+    .net-box { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #bbf7d0; border-radius: 20px; padding: 15px; text-align: center; margin-top: 15px; }
+    .net-title { color: #166534; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; }
+    .net-amount { color: #15803d; font-size: 32px; font-weight: 800; line-height: 1; margin: 0; }
+    
+    .slip-wrapper { background: #fff; border-radius: 24px; border: 2px solid #e2e8f0; box-shadow: 0 15px 35px rgba(0,0,0,0.05); position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
+    .slip-header { background: #0f172a; padding: 25px 20px; text-align: center; color: white; border-bottom: 4px solid var(--accent); }
+    .slip-header h2 { margin: 0; font-weight: 800; font-size: 22px; letter-spacing: 1px; }
+    .slip-header p { margin: 5px 0 0; color: #cbd5e1; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+    .slip-body { padding: 20px; flex-grow: 1; background: #f8fafc; }
+    .slip-table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; margin-bottom: 15px; }
+    .slip-table th { background: #f1f5f9; font-size: 11px; text-transform: uppercase; color: #64748b; padding: 10px 15px; text-align: left; }
+    .slip-table td { padding: 10px 15px; font-size: 13px; font-weight: 500; color: #334155; border-top: 1px solid #f1f5f9; }
+    .amt-col { text-align: right !important; font-family: monospace; font-size: 14px !important; font-weight: 700 !important; }
+    .slip-net { background: #0f172a; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .slip-net span { font-size: 14px; font-weight: 700; text-transform: uppercase; }
+    .slip-net strong { font-size: 24px; font-weight: 800; color: #10b981; }
+
+    .modal-content { border-radius: 24px; border: none; }
+    .modal-header { background: var(--primary); color: white; border-radius: 24px 24px 0 0; padding: 20px 30px; }
+    .step-box { background: #f8fafc; border-left: 4px solid var(--accent); padding: 12px 18px; border-radius: 0 12px 12px 0; margin-bottom: 12px; }
+    .step-box.danger { border-color: var(--danger); }
+    .step-box.success { border-color: var(--success); background: #f0fdf4; }
+    .step-title { font-weight: 700; color: var(--primary); font-size: 14px; margin-bottom: 2px; }
+    .step-desc { margin: 0; font-size: 12px; color: #64748b; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <div class="top-navbar">
+    <div>
+      <h1 class="brand-title">Silver Edge ERP</h1>
+      <p class="brand-subtitle">Smart Payroll Simulator & Visualizer</p>
+    </div>
+    <button class="btn-calc-rules" data-bs-toggle="modal" data-bs-target="#calculationModal"><i class="fas fa-book me-2"></i>Policy Rules</button>
+  </div>
+
+  <div class="container-fluid p-0">
+    <div class="row g-4">
+      
+      <div class="col-lg-4 col-md-12">
+        <div class="info-card">
+          <div class="card-heading"><i class="fas fa-sliders-h me-2"></i> Configuration</div>
+          
+          <div class="mb-3">
+            <label class="form-label">Basic Monthly Salary</label>
+            <input type="number" id="salary" class="form-control custom-input" value="150000" oninput="calculate()">
+          </div>
+          
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label text-danger">Late Mins</label>
+              <input type="number" id="late" class="form-control custom-input" value="0" oninput="calculate()">
+            </div>
+            <div class="col-6">
+              <label class="form-label text-success">Target Bonus</label>
+              <input type="number" id="bonus" class="form-control custom-input border-success" value="0" oninput="calculate()">
+            </div>
+          </div>
+
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label text-danger">Unpaid Days</label>
+              <input type="number" id="unpaid" class="form-control custom-input" value="0" oninput="calculate()">
+            </div>
+            <div class="col-6">
+              <label class="form-label text-danger">Sandwich Days</label>
+              <input type="number" id="sandwich" class="form-control custom-input" value="0" oninput="calculate()">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label text-danger">Disciplinary Fine (Jarmana)</label>
+            <input type="number" id="fine" class="form-control custom-input border-danger" value="0" oninput="calculate()">
+          </div>
+          
+          <div class="p-3 bg-light rounded-4 border">
+            <div class="stat-row pb-2" style="border-bottom: 1px solid #e2e8f0;">
+              <span class="stat-label">Per Day Rate</span>
+              <span class="stat-value text-primary" id="rateDay">0</span>
+            </div>
+            <div class="stat-row pt-2 pb-0 border-0">
+              <span class="stat-label">Per Minute Rate</span>
+              <span class="stat-value text-primary" id="rateMin">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-12">
+        <div class="info-card d-flex flex-column">
+          <div class="card-heading text-center"><i class="fas fa-chart-pie me-2"></i> Visual Analytics</div>
+          
+          <div style="height: 160px; position: relative; width: 100%; margin: 0 auto 15px;">
+            <canvas id="deductionChart"></canvas>
+          </div>
+          
+          <div class="row g-2 mb-4 text-center">
+            <div class="col-6"><div class="p-2 rounded bg-success bg-opacity-10"><div style="font-size: 10px; font-weight: 700; color: var(--success);">TAKE HOME</div><div id="pTake" style="font-size: 16px; font-weight: 800; color: var(--success);">0%</div></div></div>
+            <div class="col-6"><div class="p-2 rounded bg-danger bg-opacity-10"><div style="font-size: 10px; font-weight: 700; color: var(--danger);">DEDUCTED</div><div id="pDed" style="font-size: 16px; font-weight: 800; color: var(--danger);">0%</div></div></div>
+          </div>
+
+          <div class="card-heading mb-2 mt-auto" style="font-size: 14px;">Ledger Breakdown</div>
+          <div class="stat-row"><span class="stat-label">Late Penalty</span><span class="stat-value text-danger" id="vLate">- 0</span></div>
+          <div class="stat-row"><span class="stat-label">Unpaid + Sandwich</span><span class="stat-value text-danger" id="vAbsPen">- 0</span></div>
+          <div class="stat-row"><span class="stat-label">Income Tax + Fixed (1280)</span><span class="stat-value text-warning" id="vTaxFixed">- 0</span></div>
+          
+          <div class="net-box">
+            <div class="net-title">Net Take Home Salary</div>
+            <p class="net-amount" id="netVal">0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-12">
+        <div class="slip-wrapper">
+          <div class="slip-header">
+            <h2>SILVER EDGE</h2>
+            <p>Official Salary Slip Preview</p>
+          </div>
+          <div class="slip-body">
+            
+            <table class="slip-table">
+              <thead><tr><th>Earnings</th><th class="amt-col">Amount (PKR)</th></tr></thead>
+              <tbody>
+                <tr><td>Basic Salary</td><td class="amt-col" id="s-basic">0</td></tr>
+                <tr style="background:#f0fdf4;"><td class="text-success fw-bold">Target Bonus</td><td class="amt-col text-success" id="s-bonus">+ 0</td></tr>
+              </tbody>
+            </table>
+
+            <table class="slip-table">
+              <thead><tr><th>Deductions</th><th class="amt-col">Amount (PKR)</th></tr></thead>
+              <tbody>
+                <tr><td>Late Penalty</td><td class="amt-col text-danger" id="s-late">- 0</td></tr>
+                <tr><td>Absents & Sandwich</td><td class="amt-col text-danger" id="s-absent">- 0</td></tr>
+                <tr><td>Disciplinary Fine</td><td class="amt-col text-danger" id="s-fine">- 0</td></tr>
+                <tr><td>Income Tax</td><td class="amt-col text-danger" id="s-tax">- 0</td></tr>
+                <tr><td>Fixed (PF & Medical)</td><td class="amt-col text-danger">- 1,280</td></tr>
+              </tbody>
+            </table>
+
+          </div>
+          <div class="slip-net">
+            <span>Net Payable</span>
+            <strong id="s-net">PKR 0</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal fade" id="calculationModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">SALARY POLICY (SILVER EDGE)</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="step-box"><div class="step-title">1️⃣ Base Rates</div><p class="step-desc">Per Day: Salary ÷ 30 <br> Per Min: Salary ÷ 16,200</p></div>
+              <div class="step-box danger"><div class="step-title">2️⃣ Time Penalties</div><p class="step-desc">Late = Late Mins × Per Min <br> Absents = Unpaid Days × Per Day</p></div>
+              <div class="step-box danger"><div class="step-title">3️⃣ Sandwich Rule</div><p class="step-desc">If Friday & Monday are absent, Saturday & Sunday are deducted.</p></div>
+            </div>
+            <div class="col-md-6">
+              <div class="step-box"><div class="step-title">4️⃣ Taxes & Fixed</div><p class="step-desc">PF (680) + Medical (600) + Official FBR Tax Slabs Applied.</p></div>
+              <div class="step-box success"><div class="step-title">5️⃣ Target Bonus</div><p class="step-desc text-success fw-bold">Added directly to gross earnings.</p></div>
+              <div class="step-box" style="background: #0f172a; border-left: 4px solid #3b82f6;">
+                <div class="step-title text-white">🧮 Net Pay Formula</div>
+                <p class="step-desc text-white" style="opacity:0.9;">(Basic + Bonus) – All Deductions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let chart;
+    function getTax(sal) {
+      if (sal <= 50000) return 0; if (sal <= 60000) return 100; if (sal <= 70000) return 200;
+      if (sal <= 80000) return 300; if (sal <= 90000) return 400; if (sal <= 100000) return 500;
+      if (sal <= 110000) return 1600; if (sal <= 120000) return 2700; if (sal <= 130000) return 3800;
+      if (sal <= 140000) return 4900; if (sal <= 150000) return 6000; if (sal <= 160000) return 7100;
+      if (sal <= 170000) return 8200; if (sal <= 180000) return 9300; if (sal <= 190000) return 11200;
+      return 13500;
+    }
+
+    function initChart() {
+      const ctx = document.getElementById('deductionChart').getContext('2d');
+      chart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Net Salary', 'Deductions'],
+          datasets: [{ data: [100, 0], backgroundColor: ['#10b981', '#ef4444'], borderWidth: 0, cutout: '75%' }]
+        },
+        options: { plugins: { legend: { display: false } }, responsive: true, maintainAspectRatio: false }
+      });
+    }
+
+    function calculate() {
+      const sal = parseFloat(document.getElementById('salary').value) || 0;
+      const late = parseFloat(document.getElementById('late').value) || 0;
+      const bonus = parseFloat(document.getElementById('bonus').value) || 0;
+      const unpaid = parseFloat(document.getElementById('unpaid').value) || 0;
+      const sandwich = parseFloat(document.getElementById('sandwich').value) || 0;
+      const fine = parseFloat(document.getElementById('fine').value) || 0;
+      
+      const dayRate = sal / 30; 
+      const minRate = sal / 16200;
+      
+      const lateDed = minRate * late; 
+      const absPen = dayRate * (unpaid + sandwich);
+      const tax = getTax(sal); 
+      const fixedDed = 1280;
+      
+      const totalDed = lateDed + absPen + fine + tax + fixedDed;
+      const grossEarn = sal + bonus;
+      const net = grossEarn - totalDed;
+
+      const fmt = (num) => Math.round(num).toLocaleString();
+
+      document.getElementById('rateDay').innerText = "PKR " + fmt(dayRate);
+      document.getElementById('rateMin').innerText = "PKR " + minRate.toFixed(2);
+      
+      document.getElementById('vLate').innerText = "- PKR " + fmt(lateDed);
+      document.getElementById('vAbsPen').innerText = "- PKR " + fmt(absPen);
+      document.getElementById('vTaxFixed').innerText = "- PKR " + fmt(tax + fixedDed);
+      document.getElementById('netVal').innerText = "PKR " + fmt(net > 0 ? net : 0);
+      
+      const totalPie = grossEarn > 0 ? grossEarn : 1;
+      document.getElementById('pTake').innerText = Math.round((Math.max(0, net)/totalPie)*100) + '%';
+      document.getElementById('pDed').innerText = Math.round((Math.min(grossEarn, totalDed)/totalPie)*100) + '%';
+
+      document.getElementById('s-basic').innerText = fmt(sal);
+      document.getElementById('s-bonus').innerText = "+ " + fmt(bonus);
+      document.getElementById('s-late').innerText = "- " + fmt(lateDed);
+      document.getElementById('s-absent').innerText = "- " + fmt(absPen);
+      document.getElementById('s-fine').innerText = "- " + fmt(fine);
+      document.getElementById('s-tax').innerText = "- " + fmt(tax);
+      document.getElementById('s-net').innerText = "PKR " + fmt(net > 0 ? net : 0);
+
+      chart.data.datasets[0].data = [net > 0 ? net : 0, totalDed];
+      chart.update();
+    }
+    window.onload = () => { initChart(); calculate(); };
+  </script>
+</body>
+</html>

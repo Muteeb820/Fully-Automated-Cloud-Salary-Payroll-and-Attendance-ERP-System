@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.6);
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.5);
+      --accent: #8b5cf6;
+      --success: #10b981;
+      --danger: #ef4444;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Beautiful Glowing Background */
+    .glow-orb-1 { position: absolute; width: 300px; height: 300px; background: var(--primary); filter: blur(100px); opacity: 0.3; top: -50px; left: -50px; animation: float 10s infinite alternate; }
+    .glow-orb-2 { position: absolute; width: 250px; height: 250px; background: var(--accent); filter: blur(100px); opacity: 0.3; bottom: -50px; right: -50px; animation: float 8s infinite alternate-reverse; }
+    
+    @keyframes float { 0% { transform: translateY(0px) scale(1); } 100% { transform: translateY(30px) scale(1.1); } }
+
+    /* Premium Glass Card */
+    .dispatcher-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+      position: relative;
+    }
+
+    .header-icon { font-size: 36px; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+    .card-title { font-size: 22px; font-weight: 800; margin: 0 0 5px 0; letter-spacing: 0.5px; }
+    .card-subtitle { font-size: 13px; color: var(--text-muted); margin: 0 0 30px 0; font-weight: 500; }
+
+    /* Modern Input */
+    .input-group { position: relative; margin-bottom: 25px; text-align: left; }
+    .input-label { display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+    .custom-input { width: 100%; background: rgba(0, 0, 0, 0.3); border: 2px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 14px 15px; border-radius: 12px; font-size: 15px; font-weight: 600; outline: none; transition: all 0.3s ease; box-sizing: border-box; font-family: inherit; }
+    .custom-input:focus { border-color: var(--primary); background: rgba(0, 0, 0, 0.5); box-shadow: 0 0 15px var(--primary-glow); }
+
+    /* Animated Button */
+    .btn-launch { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; font-family: inherit; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+    .btn-launch:hover { transform: translateY(-2px); box-shadow: 0 15px 25px rgba(59, 130, 246, 0.4); }
+    .btn-launch:disabled { background: #475569; color: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* Progress Section */
+    .progress-section { display: none; margin-top: 20px; }
+    .status-text { font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 10px; display: flex; justify-content: space-between; }
+    .progress-bar-bg { background: rgba(255, 255, 255, 0.1); height: 12px; border-radius: 20px; overflow: hidden; position: relative; }
+    .progress-fill { background: linear-gradient(90deg, var(--primary), var(--accent)); height: 100%; width: 0%; border-radius: 20px; transition: width 0.4s ease; position: relative; }
+    
+    /* Shimmer effect on progress bar */
+    .progress-fill::after { content: ""; position: absolute; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%); animation: shimmer 1.5s infinite; }
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+    /* Success State */
+    .success-state { display: none; margin-top: 10px; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+    .success-icon { width: 60px; height: 60px; background: rgba(16, 185, 129, 0.1); border: 2px solid var(--success); color: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 15px; box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+    .success-title { font-size: 20px; font-weight: 800; color: var(--success); margin: 0 0 5px 0; }
+    .success-desc { font-size: 13px; color: var(--text-muted); margin: 0; }
+    
+    @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+  </style>
+</head>
+<body>
+
+  <div class="glow-orb-1"></div>
+  <div class="glow-orb-2"></div>
+
+  <div class="dispatcher-card">
+    
+    <div id="uiHeader">
+      <div class="header-icon"><i class="fas fa-paper-plane"></i></div>
+      <h2 class="card-title">Cloud Dispatcher</h2>
+      <p class="card-subtitle">Automated PDF & Email Pipeline</p>
+
+      <div class="input-group">
+        <label class="input-label">Target Month Name</label>
+        <input type="text" id="targetMonth" class="custom-input" placeholder="e.g., Jan" autocomplete="off">
+      </div>
+
+      <button id="startBtn" class="btn-launch" onclick="startBulkProcess()">
+        <i class="fas fa-rocket me-2"></i> Launch Dispatcher
+      </button>
+    </div>
+
+    <div id="progressContainer" class="progress-section">
+      <div class="status-text">
+        <span id="statusMessage">Initializing Engine...</span>
+        <span id="countText">0 / 0</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div id="progressBar" class="progress-fill"></div>
+      </div>
+      <p style="font-size: 11px; color: #64748b; margin-top: 15px; font-weight: 500;">
+        <i class="fas fa-shield-alt"></i> Safe Mode Active. Do not close window.
+      </p>
+    </div>
+
+    <div id="successContainer" class="success-state">
+      <div class="success-icon"><i class="fas fa-check"></i></div>
+      <h2 class="success-title">Mission Accomplished!</h2>
+      <p class="success-desc">All salary slips have been successfully generated and delivered to employees.</p>
+      
+      <button class="btn-launch" style="background: var(--bg-dark); border: 1px solid var(--border-light); margin-top: 25px;" onclick="google.script.host.close()">
+        Close Window
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // Helper function to talk to Code.gs
+    function runGoogleScript(func, ...args) {
+        return new Promise((resolve, reject) => {
+            google.script.run.withSuccessHandler(resolve).withFailureHandler(reject)[func](...args);
+        });
+    }
+
+    async function startBulkProcess() {
+        const month = document.getElementById('targetMonth').value.trim();
+        if(!month) {
+            alert("⚠️ Please enter a valid month name!");
+            return;
+        }
+
+        const uiHeader = document.getElementById('uiHeader');
+        const inputField = document.getElementById('targetMonth');
+        const btn = document.getElementById('startBtn');
+        const pCont = document.getElementById('progressContainer');
+        const pBar = document.getElementById('progressBar');
+        const statusMsg = document.getElementById('statusMessage');
+        const countTxt = document.getElementById('countText');
+
+        // UI Changes on Start
+        inputField.disabled = true;
+        btn.disabled = true; 
+        btn.innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Connecting to Server...";
+        pCont.style.display = "block";
+        statusMsg.innerText = "Extracting Data...";
+
+        try {
+            // 1. Fetch total employees
+            const allEmployees = await runGoogleScript('getEmployeeDataForBatching', month);
+            const total = allEmployees.length;
+            
+            if(total === 0) {
+                statusMsg.innerText = "Error: No valid records found!"; 
+                statusMsg.style.color = "var(--danger)";
+                btn.disabled = false; inputField.disabled = false;
+                btn.innerHTML = "Try Again";
+                return;
+            }
+
+            let processedCount = 0;
+            // 🎯 YAHAN 15 KI VALUE SET HAI (Send 15 emails per batch)
+            const batchSize = 15; 
+
+            // 2. Loop through batches
+            for (let i = 0; i < total; i += batchSize) {
+                const batch = allEmployees.slice(i, i + batchSize);
+                statusMsg.innerText = `Dispatching batch ${i+1} to ${Math.min(i+batchSize, total)}...`;
+                
+                // Call backend
+                const successCount = await runGoogleScript('processSingleBatch', month, batch);
+                processedCount += successCount;
+                
+                // Update Progress Bar
+                let percent = Math.round((processedCount / total) * 100);
+                pBar.style.width = percent + '%';
+                countTxt.innerText = `${processedCount} / ${total}`;
+            }
+
+            // 3. 🎉 SUCCESS STATE ACTIVATION 🎉
+            setTimeout(() => {
+                // Hide header and progress
+                uiHeader.style.display = "none";
+                pCont.style.display = "none";
+                
+                // Show Success Screen
+                document.getElementById('successContainer').style.display = "block";
+            }, 800); // Slight delay for smooth transition
+
+        } catch (error) {
+            statusMsg.innerText = "Error: " + error.message; 
+            statusMsg.style.color = "var(--danger)";
+            btn.disabled = false; inputField.disabled = false;
+            btn.innerHTML = "Retry Launch";
+        }
+    }
+  </script>
+</body>
+</html>
