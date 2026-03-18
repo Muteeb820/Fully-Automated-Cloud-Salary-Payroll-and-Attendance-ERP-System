@@ -22,13 +22,15 @@
     .top-navbar { background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%); border-radius: 20px; padding: 20px 30px; margin-bottom: 25px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
     .brand-title { color: white; margin: 0; font-weight: 800; font-size: 24px; letter-spacing: 0.5px; }
     .brand-subtitle { color: #94a3b8; margin: 0; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
-    .btn-calc-rules { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; border: none; border-radius: 50px; padding: 10px 24px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); transition: all 0.3s ease; }
+    
+    .btn-calc-rules { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 50px; padding: 10px 24px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); transition: all 0.3s ease; }
+    .btn-calc-rules:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6); }
     
     .info-card { background: var(--card-bg); border-radius: 24px; padding: 25px; height: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid rgba(226, 232, 240, 0.8); }
     .card-heading { font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
     
-    .form-label { font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; margin-bottom: 6px; }
-    .custom-input { border-radius: 12px; border: 2px solid #e2e8f0; padding: 10px 15px; font-weight: 600; font-size: 14px; color: var(--primary); background: #f8fafc; transition: all 0.3s; }
+    .form-label { font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 6px; }
+    .custom-input { border-radius: 10px; border: 2px solid #e2e8f0; padding: 8px 12px; font-weight: 600; font-size: 13px; color: var(--primary); background: #f8fafc; transition: all 0.3s; }
     .custom-input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); background: white; outline: none; }
     
     .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #e2e8f0; }
@@ -46,29 +48,40 @@
     .slip-body { padding: 20px; flex-grow: 1; background: #f8fafc; }
     .slip-table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; margin-bottom: 15px; }
     .slip-table th { background: #f1f5f9; font-size: 11px; text-transform: uppercase; color: #64748b; padding: 10px 15px; text-align: left; }
-    .slip-table td { padding: 10px 15px; font-size: 13px; font-weight: 500; color: #334155; border-top: 1px solid #f1f5f9; }
-    .amt-col { text-align: right !important; font-family: monospace; font-size: 14px !important; font-weight: 700 !important; }
+    .slip-table td { padding: 8px 15px; font-size: 13px; font-weight: 500; color: #334155; border-top: 1px solid #f1f5f9; }
+    .amt-col { text-align: right !important; font-family: monospace; font-size: 13px !important; font-weight: 700 !important; }
     .slip-net { background: #0f172a; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
     .slip-net span { font-size: 14px; font-weight: 700; text-transform: uppercase; }
     .slip-net strong { font-size: 24px; font-weight: 800; color: #10b981; }
 
-    .modal-content { border-radius: 24px; border: none; }
-    .modal-header { background: var(--primary); color: white; border-radius: 24px 24px 0 0; padding: 20px 30px; }
-    .step-box { background: #f8fafc; border-left: 4px solid var(--accent); padding: 12px 18px; border-radius: 0 12px 12px 0; margin-bottom: 12px; }
-    .step-box.danger { border-color: var(--danger); }
-    .step-box.success { border-color: var(--success); background: #f0fdf4; }
-    .step-title { font-weight: 700; color: var(--primary); font-size: 14px; margin-bottom: 2px; }
-    .step-desc { margin: 0; font-size: 12px; color: #64748b; font-weight: 500; }
+    .modal-content { border-radius: 24px; border: none; overflow: hidden; }
+    .modal-header { background: var(--primary); color: white; padding: 20px 30px; }
+    .calc-table th { background: #f8fafc; color: var(--primary); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; padding: 15px; }
+    .calc-table td { padding: 15px; vertical-align: middle; font-size: 13px; color: #334155; border-color: #e2e8f0; }
+    .code-badge { background: #f1f5f9; border: 1px solid #cbd5e1; padding: 4px 8px; border-radius: 6px; font-family: monospace; font-weight: 600; color: var(--primary); }
+    
+    /* Coming Soon Roadmap styling */
+    .roadmap-item { background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #3b82f6; padding: 20px; border-radius: 6px; margin-bottom: 15px; }
+    .roadmap-title { font-size: 16px; font-weight: bold; color: #0f172a; margin-bottom: 5px; }
+    .roadmap-desc { font-size: 13px; color: #475569; line-height: 1.5; }
+    .badge-road { padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-bottom: 10px; }
   </style>
 </head>
 <body>
 
   <div class="top-navbar">
     <div>
-      <h1 class="brand-title">Silver Edge ERP</h1>
-      <p class="brand-subtitle">Smart Payroll Simulator & Visualizer</p>
+      <h1 class="brand-title">Silver Edge Technologies</h1>
+      <p class="brand-subtitle">Monthly Financial Simulator & Analytics</p>
     </div>
-    <button class="btn-calc-rules" data-bs-toggle="modal" data-bs-target="#calculationModal"><i class="fas fa-book me-2"></i>Policy Rules</button>
+    <div class="d-flex gap-2">
+      <button class="btn-calc-rules" data-bs-toggle="modal" data-bs-target="#calculationModal">
+        <i class="fas fa-calculator me-2"></i>How We Calculate
+      </button>
+      <button class="btn-calc-rules" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);" data-bs-toggle="modal" data-bs-target="#roadmapModal">
+        <i class="fas fa-rocket me-2"></i>Coming Soon
+      </button>
+    </div>
   </div>
 
   <div class="container-fluid p-0">
@@ -76,41 +89,63 @@
       
       <div class="col-lg-4 col-md-12">
         <div class="info-card">
-          <div class="card-heading"><i class="fas fa-sliders-h me-2"></i> Configuration</div>
+          <div class="card-heading"><i class="fas fa-sliders-h me-2"></i> Configuration Parameters</div>
           
           <div class="mb-3">
-            <label class="form-label">Basic Monthly Salary</label>
-            <input type="number" id="salary" class="form-control custom-input" value="150000" oninput="calculate()">
+            <label class="form-label text-primary">Basic Monthly Salary (PKR)</label>
+            <input type="number" id="salary" class="form-control custom-input border-primary" value="150000" oninput="calculate()">
           </div>
           
           <div class="row g-2 mb-3">
-            <div class="col-6">
-              <label class="form-label text-danger">Late Mins</label>
-              <input type="number" id="late" class="form-control custom-input" value="0" oninput="calculate()">
-            </div>
             <div class="col-6">
               <label class="form-label text-success">Target Bonus</label>
               <input type="number" id="bonus" class="form-control custom-input border-success" value="0" oninput="calculate()">
             </div>
+            <div class="col-6">
+              <label class="form-label text-danger">Fine </label>
+              <input type="number" id="fine" class="form-control custom-input border-danger" value="0" oninput="calculate()">
+            </div>
           </div>
 
           <div class="row g-2 mb-3">
-            <div class="col-6">
-              <label class="form-label text-danger">Unpaid Days</label>
-              <input type="number" id="unpaid" class="form-control custom-input" value="0" oninput="calculate()">
+            <div class="col-4">
+              <label class="form-label text-danger">Late Mins</label>
+              <input type="number" id="late" class="form-control custom-input border-danger" value="0" oninput="calculate()">
             </div>
-            <div class="col-6">
-              <label class="form-label text-danger">Sandwich Days</label>
-              <input type="number" id="sandwich" class="form-control custom-input" value="0" oninput="calculate()">
+            <div class="col-4">
+              <label class="form-label text-danger">Unpaid Days</label>
+              <input type="number" id="unpaid" class="form-control custom-input border-danger" value="0" oninput="calculate()">
+            </div>
+            <div class="col-4">
+              <label class="form-label text-danger">Sandwich</label>
+              <input type="number" id="sandwich" class="form-control custom-input border-danger" value="0" oninput="calculate()">
             </div>
           </div>
 
           <div class="mb-3">
-            <label class="form-label text-danger">Disciplinary Fine (Jarmana)</label>
-            <input type="number" id="fine" class="form-control custom-input border-danger" value="0" oninput="calculate()">
+            <label class="form-label text-primary">Medical Tier (1-5)</label>
+            <select id="medTier" class="form-select custom-input" onchange="calculate()">
+              <option value="0">0 - No Deduction</option>
+              <option value="1">Tier 1 - 600 PKR</option>
+              <option value="2">Tier 2 - 1200 PKR</option>
+              <option value="3">Tier 3 - 1800 PKR</option>
+              <option value="4">Tier 4 - 2400 PKR</option>
+              <option value="5">Tier 5 - 3000 PKR</option>
+            </select>
+          </div>
+
+          <div class="row g-2 mb-3">
+            <div class="col-6">
+              <label class="form-label text-warning">Remaining Loan</label>
+              <input type="number" id="remLoan" class="form-control custom-input border-warning" value="0" oninput="calculate()">
+            </div>
+            <div class="col-6">
+              <label class="form-label text-warning">Installment</label>
+              <input type="number" id="loanInst" class="form-control custom-input border-warning" value="0" oninput="calculate()">
+            </div>
           </div>
           
-          <div class="p-3 bg-light rounded-4 border">
+          <div class="p-3 bg-light rounded-4 border mt-4">
             <div class="stat-row pb-2" style="border-bottom: 1px solid #e2e8f0;">
               <span class="stat-label">Per Day Rate</span>
               <span class="stat-value text-primary" id="rateDay">0</span>
@@ -139,7 +174,8 @@
           <div class="card-heading mb-2 mt-auto" style="font-size: 14px;">Ledger Breakdown</div>
           <div class="stat-row"><span class="stat-label">Late Penalty</span><span class="stat-value text-danger" id="vLate">- 0</span></div>
           <div class="stat-row"><span class="stat-label">Unpaid + Sandwich</span><span class="stat-value text-danger" id="vAbsPen">- 0</span></div>
-          <div class="stat-row"><span class="stat-label">Income Tax + Fixed (1280)</span><span class="stat-value text-warning" id="vTaxFixed">- 0</span></div>
+          <div class="stat-row"><span class="stat-label">Income Tax + PF (680)</span><span class="stat-value text-warning" id="vTaxFixed">- 0</span></div>
+          <div class="stat-row"><span class="stat-label">Medical + Loan</span><span class="stat-value text-danger" id="vMedLoan">- 0</span></div>
           
           <div class="net-box">
             <div class="net-title">Net Take Home Salary</div>
@@ -151,8 +187,8 @@
       <div class="col-lg-4 col-md-12">
         <div class="slip-wrapper">
           <div class="slip-header">
-            <h2>SILVER EDGE</h2>
-            <p>Official Salary Slip Preview</p>
+            <h2>OFFICIAL PAYSLIP</h2>
+            <p>Live Document Preview</p>
           </div>
           <div class="slip-body">
             
@@ -171,7 +207,9 @@
                 <tr><td>Absents & Sandwich</td><td class="amt-col text-danger" id="s-absent">- 0</td></tr>
                 <tr><td>Disciplinary Fine</td><td class="amt-col text-danger" id="s-fine">- 0</td></tr>
                 <tr><td>Income Tax</td><td class="amt-col text-danger" id="s-tax">- 0</td></tr>
-                <tr><td>Fixed (PF & Medical)</td><td class="amt-col text-danger">- 1,280</td></tr>
+                <tr><td>Fixed PF</td><td class="amt-col text-danger">- 680</td></tr>
+                <tr><td>Medical Deduction</td><td class="amt-col text-danger" id="s-med">- 0</td></tr>
+                <tr><td style="font-weight: bold; color: #d97706;">Loan Installment</td><td class="amt-col text-warning" id="s-loan">- 0</td></tr>
               </tbody>
             </table>
 
@@ -190,25 +228,104 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title fw-bold">SALARY POLICY (SILVER EDGE)</h5>
+          <h5 class="modal-title fw-bold" style="letter-spacing: 1px;"><i class="fas fa-microchip me-2"></i> Salary Calculation Logic</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-0">
+          
+          <table class="table table-hover mb-0 calc-table">
+            <thead>
+              <tr>
+                <th style="width: 35%;">Component</th>
+                <th style="width: 65%;">Mathematical Logic / Applied Formula</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fw-bold text-primary"><i class="fas fa-coins me-2"></i> Base Rates</td>
+                <td>
+                  <span class="code-badge">Per Day = Basic Salary ÷ 30</span><br>
+                  <span class="code-badge mt-1">Per Min = Basic Salary ÷ 16,200</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-danger"><i class="fas fa-clock me-2"></i> Late Penalties</td>
+                <td><span class="code-badge">Total Late Mins × Per Min Rate</span></td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-danger"><i class="fas fa-calendar-times me-2"></i> Absents & Sandwich</td>
+                <td>
+                  <span class="code-badge">(Unpaid Days + Sandwich Days) × Per Day Rate</span><br>
+                  <small class="text-muted d-block mt-1">Note: Under the Sandwich Rule, if an employee is absent on Friday and Monday, Saturday and Sunday will also be strictly deducted.</small>
+                </td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-warning"><i class="fas fa-hand-holding-usd me-2"></i> Smart Loan Engine</td>
+                <td>
+                  System dynamically compares Installment versus Remaining Loan.<br>
+                  <small class="text-muted d-block mt-1">If the Installment exceeds the Remaining Balance, the system will only deduct the remaining balance to prevent negative figures.</small>
+                </td>
+              </tr>
+              <tr>
+                <td class="fw-bold" style="color: #6366f1;"><i class="fas fa-briefcase-medical me-2"></i> Medical Tiers</td>
+                <td>
+                  Automatically calculates based on numerical tier representation:<br>
+                  <span class="code-badge mt-1">Tier 1: 600</span> <span class="code-badge mt-1">Tier 2: 1200</span> <span class="code-badge mt-1">Tier 3: 1800</span> <span class="code-badge mt-1">Tier 4: 2400</span> <span class="code-badge mt-1">Tier 5: 3000</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="fw-bold text-secondary"><i class="fas fa-landmark me-2"></i> Tax & Fixed Deductions</td>
+                <td>
+                  <span class="code-badge">Provident Fund (PF) = 680 PKR (Fixed)</span><br>
+                  <small class="text-muted d-block mt-1">FBR Income Tax is dynamically applied based on predefined national salary slabs.</small>
+                </td>
+              </tr>
+              <tr style="background: #f0fdf4;">
+                <td class="fw-bold text-success fs-6"><i class="fas fa-money-check-alt me-2"></i> Final Net Payable</td>
+                <td><span class="code-badge" style="background: #10b981; color: white; border: none;">(Basic + Target Bonus) - All Deductions</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="roadmapModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #1e293b;">
+          <h5 class="modal-title fw-bold" style="letter-spacing: 1px;"><i class="fas fa-rocket me-2"></i> Future Updates & Roadmap</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body p-4">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="step-box"><div class="step-title">1️⃣ Base Rates</div><p class="step-desc">Per Day: Salary ÷ 30 <br> Per Min: Salary ÷ 16,200</p></div>
-              <div class="step-box danger"><div class="step-title">2️⃣ Time Penalties</div><p class="step-desc">Late = Late Mins × Per Min <br> Absents = Unpaid Days × Per Day</p></div>
-              <div class="step-box danger"><div class="step-title">3️⃣ Sandwich Rule</div><p class="step-desc">If Friday & Monday are absent, Saturday & Sunday are deducted.</p></div>
-            </div>
-            <div class="col-md-6">
-              <div class="step-box"><div class="step-title">4️⃣ Taxes & Fixed</div><p class="step-desc">PF (680) + Medical (600) + Official FBR Tax Slabs Applied.</p></div>
-              <div class="step-box success"><div class="step-title">5️⃣ Target Bonus</div><p class="step-desc text-success fw-bold">Added directly to gross earnings.</p></div>
-              <div class="step-box" style="background: #0f172a; border-left: 4px solid #3b82f6;">
-                <div class="step-title text-white">🧮 Net Pay Formula</div>
-                <p class="step-desc text-white" style="opacity:0.9;">(Basic + Bonus) – All Deductions</p>
-              </div>
-            </div>
+          <p style="font-size: 13px; color: #64748b; margin-bottom: 25px;">Modules actively being developed or planned for future rollout.</p>
+
+          <div class="roadmap-item">
+            <div class="badge-road" style="background:#dbeafe; color:#1d4ed8;">In Progress</div>
+            <div class="roadmap-title">UI/UX Enhancements</div>
+            <div class="roadmap-desc">Continuously optimizing the user interface and experience to ensure smoother navigation, faster load times, and better accessibility for all system modules.</div>
           </div>
+
+          <div class="roadmap-item">
+            <div class="badge-road" style="background:#e2e8f0; color:#475569;">In Queue</div>
+            <div class="roadmap-title">New Joiner Management</div>
+            <div class="roadmap-desc">A dedicated onboarding module to seamlessly integrate new employees, generate initial records, and track orientation progress within the ERP.</div>
+          </div>
+
+          <div class="roadmap-item">
+            <div class="badge-road" style="background:#fef08a; color:#b45309;">Coming Soon</div>
+            <div class="roadmap-title">Company Letters Generation</div>
+            <div class="roadmap-desc">Automated system to instantly generate official company documents, including Offer Letters, Experience Certificates, and Warning Notices.</div>
+          </div>
+
+          <div class="roadmap-item">
+            <div class="badge-road" style="background:#e0e7ff; color:#1e3a8a;">Future Update</div>
+            <div class="roadmap-title">Standalone Web Portal</div>
+            <div class="roadmap-desc">Migrating the entire front-end UI to a dedicated web application (React/Laravel architecture) while utilizing Google Sheets as a secure, headless backend database.</div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -216,6 +333,8 @@
 
   <script>
     let chart;
+    
+    // FBR Tax Slabs
     function getTax(sal) {
       if (sal <= 50000) return 0; if (sal <= 60000) return 100; if (sal <= 70000) return 200;
       if (sal <= 80000) return 300; if (sal <= 90000) return 400; if (sal <= 100000) return 500;
@@ -245,15 +364,28 @@
       const sandwich = parseFloat(document.getElementById('sandwich').value) || 0;
       const fine = parseFloat(document.getElementById('fine').value) || 0;
       
+      const medTier = parseInt(document.getElementById('medTier').value) || 0;
+      const remLoan = parseFloat(document.getElementById('remLoan').value) || 0;
+      const loanInst = parseFloat(document.getElementById('loanInst').value) || 0;
+      
       const dayRate = sal / 30; 
       const minRate = sal / 16200;
       
       const lateDed = minRate * late; 
       const absPen = dayRate * (unpaid + sandwich);
       const tax = getTax(sal); 
-      const fixedDed = 1280;
+      const pfFixed = 680;
+      const medDed = medTier * 600; 
       
-      const totalDed = lateDed + absPen + fine + tax + fixedDed;
+      let actualLoanDeduction = 0;
+      if (remLoan > 0) {
+        actualLoanDeduction = loanInst;
+        if (actualLoanDeduction > remLoan) {
+            actualLoanDeduction = remLoan; 
+        }
+      }
+      
+      const totalDed = lateDed + absPen + fine + tax + pfFixed + medDed + actualLoanDeduction;
       const grossEarn = sal + bonus;
       const net = grossEarn - totalDed;
 
@@ -264,12 +396,15 @@
       
       document.getElementById('vLate').innerText = "- PKR " + fmt(lateDed);
       document.getElementById('vAbsPen').innerText = "- PKR " + fmt(absPen);
-      document.getElementById('vTaxFixed').innerText = "- PKR " + fmt(tax + fixedDed);
+      document.getElementById('vTaxFixed').innerText = "- PKR " + fmt(tax + pfFixed);
+      document.getElementById('vMedLoan').innerText = "- PKR " + fmt(medDed + actualLoanDeduction);
       document.getElementById('netVal').innerText = "PKR " + fmt(net > 0 ? net : 0);
       
       const totalPie = grossEarn > 0 ? grossEarn : 1;
       document.getElementById('pTake').innerText = Math.round((Math.max(0, net)/totalPie)*100) + '%';
       document.getElementById('pDed').innerText = Math.round((Math.min(grossEarn, totalDed)/totalPie)*100) + '%';
+      chart.data.datasets[0].data = [net > 0 ? net : 0, totalDed];
+      chart.update();
 
       document.getElementById('s-basic').innerText = fmt(sal);
       document.getElementById('s-bonus').innerText = "+ " + fmt(bonus);
@@ -277,11 +412,11 @@
       document.getElementById('s-absent').innerText = "- " + fmt(absPen);
       document.getElementById('s-fine').innerText = "- " + fmt(fine);
       document.getElementById('s-tax').innerText = "- " + fmt(tax);
+      document.getElementById('s-med').innerText = "- " + fmt(medDed);
+      document.getElementById('s-loan').innerText = "- " + fmt(actualLoanDeduction);
       document.getElementById('s-net').innerText = "PKR " + fmt(net > 0 ? net : 0);
-
-      chart.data.datasets[0].data = [net > 0 ? net : 0, totalDed];
-      chart.update();
     }
+    
     window.onload = () => { initChart(); calculate(); };
   </script>
 </body>
