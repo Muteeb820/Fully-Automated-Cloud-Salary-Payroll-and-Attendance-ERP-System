@@ -1,4 +1,4 @@
-# 🚀 Silver Edge Technologies - Enterprise ERP & Payroll System
+# 🚀 Company - Enterprise ERP & Payroll System
 
 A complete, serverless Enterprise Resource Planning (ERP) and Payroll automation system built natively on Google Workspace (Google Sheets + Google Apps Script). This system features an advanced calculation engine, secure PDF payslip generation, anti-spam email dispatcher, and an interactive financial simulator dashboard.
 
@@ -86,4 +86,4 @@ The system consists of three main files in Google Apps Script:
 * **Standalone Web Portal:** Full migration to a headless React/Laravel architecture.
 
 ---
-*Developed securely for Silver Edge Technologies.*
+*Developed securely for Company.*
